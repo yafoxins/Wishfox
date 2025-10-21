@@ -1,6 +1,10 @@
-# Wishfox – Telegram Mini App
+﻿# Wishfox – Telegram Mini App
 
 [Русская версия](#russian) • [English version](#english)
+
+### Автор
+
+- Aleksandr Timkov — [t.me/yafoxin](https://t.me/yafoxin)
 
 ---
 
@@ -40,13 +44,13 @@ flowchart LR
 
     Telegram["Telegram Bot API"]
 
-    App -- HTTPS --> Nginx
-    Nginx -- proxied --> API
+    App --|HTTPS|--> Nginx
+    Nginx --|reverse proxy|--> API
     API -- SQLAlchemy --> DB
-    API -- Redis queue --> Worker
-    Worker -- Bot token --> Telegram
-    API -- файловая система --> Media
-    App <-- статический контент -- Nginx
+    API --|Redis queue|--> Worker
+    Worker --|Bot token|--> Telegram
+    API --|файловая система|--> Media
+    App <--|статический контент|--> Nginx
 ```
 
 ### Стек
@@ -82,15 +86,15 @@ make logs                   # стрим логов
 - `POSTGRES_*`, `REDIS_URL` — соединения с БД и Redis.  
 - `MEDIA_ROOT` — путь для загружаемых изображений (мапится в контейнер).
 
-Файлы сертификатов (`yafoxin.ru_cert.pem`, `yafoxin.ru_private_key.pem`) монтируются nginx как `fullchain.pem` и `privkey.pem`. После замены выполните `docker compose restart nginx`.
+*Сертификаты в репозитории отсутствуют.* Получите их (например, через Let's Encrypt/ZeroSSL), смонтируйте в nginx как `fullchain.pem`/`privkey.pem`, затем перезапустите прокси: `docker compose restart nginx`.
 
 ### Telegram-конфигурация
 
-1. Создайте бота (`/newbot`) и получите токен.  
-2. `/setmenubutton` → Web App → `https://ваш-домен/?tgWebAppStartParam=<username>`.  
-3. `/setdomain` → укажите домен.  
-4. Обновите `.env`, перезапустите стек.  
-5. Для подробностей см. `README.botfather.ru.md`.
+1. Создайте бота у @BotFather (`/newbot`) и сохраните токен.  
+2. `/setmenubutton` → выбрать бота → Web App → `https://<ваш-домен>/?tgWebAppStartParam=<username>`.  
+3. `/setdomain` → пропишите тот же домен.  
+4. По желанию настройте `/setcommands`, `/setdescription`, `/setabouttext`.  
+5. Обновите `.env` (переменная `BOT_TOKEN`, домены) и перезапустите стек.
 
 ### API и функциональность
 
@@ -158,14 +162,14 @@ flowchart LR
 
     TelegramEn["Telegram Bot API"]
 
-    AppEn -- HTTPS --> NginxEn
-    NginxEn --> APIEn
-    APIEn --> DBEn
-    APIEn --> CacheEn
-    CacheEn --> WorkerEn
-    WorkerEn --> TelegramEn
-    APIEn --> MediaEn
-    AppEn <-- static --> NginxEn
+    AppEn --|HTTPS|--> NginxEn
+    NginxEn --|reverse proxy|--> APIEn
+    APIEn --|SQL|--> DBEn
+    APIEn --|Redis queue|--> CacheEn
+    CacheEn --|tasks|--> WorkerEn
+    WorkerEn --|Bot token|--> TelegramEn
+    APIEn --|file storage|--> MediaEn
+    AppEn <--|static assets|--> NginxEn
 ```
 
 ### Tech stack
@@ -201,15 +205,14 @@ Handy targets:
 - `POSTGRES_*`, `REDIS_URL` — database connections.  
 - `MEDIA_ROOT` — upload directory mapped inside the container.
 
-TLS certificates (`yafoxin.ru_cert.pem`, `yafoxin.ru_private_key.pem`) are mounted into nginx as `fullchain.pem` and `privkey.pem`. Afterwards run `docker compose restart nginx`.
+*Certificates are not stored in the repository.* Issue them yourself (Let's Encrypt/ZeroSSL/etc.), mount them into nginx as `fullchain.pem`/`privkey.pem`, and restart the proxy: `docker compose restart nginx`.
 
 ### Telegram setup
-
-1. Create a bot via @BotFather and keep the token.  
-2. `/setmenubutton` → Web App → `https://your-domain/?tgWebAppStartParam=<username>`.  
-3. `/setdomain` → specify the domain.  
-4. Update `.env` and restart the stack.  
-5. See `README.botfather.ru.md` for advanced tips.
+1. Create a bot with @BotFather (`/newbot`) and keep the token.  
+2. Run `/setmenubutton` -> select the bot -> Web App -> `https://<your-domain>/?tgWebAppStartParam=<username>`.  
+3. Run `/setdomain` -> provide the same domain.  
+4. Optionally adjust `/setcommands`, `/setdescription`, `/setabouttext`.  
+5. Update `.env` (`BOT_TOKEN`, domains) and restart the stack.  
 
 ### API highlights
 
@@ -238,6 +241,10 @@ media/          # uploads volume
 scripts/        # smoke/utility scripts
 docker-compose.yml
 ```
+
+### Author
+
+- Aleksandr Timkov — [t.me/yafoxin](https://t.me/yafoxin)
 
 ---
 
