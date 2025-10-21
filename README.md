@@ -31,12 +31,12 @@ flowchart LR
     end
 
     subgraph Back["Backend (FastAPI)"]
-        API["REST API\nAuth / Wishes / Feed / ..."]
-        Worker["Celery worker\nTelegram уведомления"]
-        Media["Media storage\n(локально)"]
+        API["REST API"]
+        Worker["Celery Worker"]
+        Media["Media Storage"]
     end
 
-    subgraph Infra["Инфраструктура"]
+    subgraph Infra["Infrastructure"]
         DB[(PostgreSQL)]
         Cache[(Redis)]
         Nginx["nginx reverse proxy\n+ TLS"]
@@ -46,11 +46,12 @@ flowchart LR
 
     App --|HTTPS|--> Nginx
     Nginx --|reverse proxy|--> API
-    API -- SQLAlchemy --> DB
-    API --|Redis queue|--> Worker
+    API --|SQL|--> DB
+    API --|Redis queue|--> Cache
+    Cache --|tasks|--> Worker
     Worker --|Bot token|--> Telegram
-    API --|файловая система|--> Media
-    App <--|статический контент|--> Nginx
+    API --|file storage|--> Media
+    App <--|static assets|--> Nginx
 ```
 
 ### Стек
@@ -250,3 +251,4 @@ docker-compose.yml
 
 **Готово! / Done!**  
 Если вы нашли ошибку или хотите предложить улучшение — создайте issue или pull request 🙌
+
