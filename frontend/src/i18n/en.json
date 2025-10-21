@@ -1,0 +1,103 @@
+﻿{
+    "app":  {
+                "title":  "Wishfox",
+                "loading":  "Preparing your wishlist...",
+                "error":  "Something went wrong. Please try again.",
+                "hero_title_with_handle":  "Wishlist {{handle}}",
+                "hero_title_default":  "{{name}}\u0027s wishlist",
+                "hero_total_wishes":  "Wishes: {{count}}",
+                "hero_following":  "Following: {{count}}",
+                "hero_feed_title":  "Updates feed",
+                "hero_feed_subtitle":  "See new wishes as soon as they appear.",
+                "hero_subscriptions_title":  "Subscriptions",
+                "hero_subscriptions_subtitle":  "Manage wishlists you follow.",
+                "hero_profile_title":  "Profile {{name}}",
+                "hero_profile_subtitle_self":  "Edit your info and share your wishlist.",
+                "hero_profile_subtitle_external":  "View public details.",
+                "hero_settings_title":  "Settings",
+                "hero_settings_subtitle":  "Choose language, theme, and notifications."
+            },
+    "tabs":  {
+                 "wishlist":  "Wishlist",
+                 "feed":  "Feed",
+                 "subscriptions":  "Subscriptions",
+                 "profile":  "Profile",
+                 "settings":  "Settings"
+             },
+    "wishlist":  {
+                     "empty_title":  "Nothing here yet",
+                     "empty_body":  "Start by adding a wish - capture a dream, a tiny joy, or a thoughtful gift idea.",
+                     "add_button":  "Add wish",
+                     "search_placeholder":  "Search wishes, tags, or links",
+                     "form":  {
+                                  "title":  "Title",
+                                  "description":  "Description",
+                                  "url":  "Link",
+                                  "price":  "Price",
+                                  "tags":  "Tags (comma separated)",
+                                  "image":  "Choose image"
+                              },
+                     "priority":  {
+                                      "low":  "Low",
+                                      "medium":  "Medium",
+                                      "high":  "High"
+                                  },
+                     "status":  {
+                                    "planned":  "Planned",
+                                    "ordered":  "Ordered",
+                                    "gifted":  "Gifted"
+                                }
+                 },
+    "feed":  {
+                 "empty_title":  "The feed is calm",
+                 "empty_body":  "Subscribe to friends to see their newest wishes.",
+                 "activity":  {
+                                  "created":  "added a wish",
+                                  "updated":  "updated a wish"
+                              },
+                 "status_chip":  "Status: {{status}}",
+                 "price_chip":  "Price: {{value}}",
+                 "open_link":  "Open link",
+                 "image_alt":  "Wish \"{{title}}\" preview",
+                 "avatar_alt":  "{{name}}\u0027s avatar",
+                 "items_count":  "Updates: {{count}}"
+             },
+    "subscriptions":  {
+                          "empty_title":  "No subscriptions yet",
+                          "empty_body":  "Discover public wishlists and follow the ones you love.",
+                          "handle_missing":  "This user hasn\u0027t added a public @username yet.",
+                          "count":  "Following: {{count}}"
+                      },
+    "profile":  {
+                    "display_name":  "Display name",
+                    "bio":  "About you",
+                    "username":  "Username",
+                    "custom_username_hint":  "Create a username to let friends find you.",
+                    "save":  "Save changes",
+                    "edit_button":  "Edit profile",
+                    "handle_missing":  "Connect your Telegram username to share with friends.",
+                    "empty_bio":  "No story yet. Tell friends a little about yourself.",
+                    "share_hint":  "Open Telegram settings and add a username to enable sharing."
+                },
+    "settings":  {
+                     "notifications":  "Notifications",
+                     "new_wish":  "New wish",
+                     "updated_wish":  "Wish updated",
+                     "digest":  "Daily digest",
+                     "language":  "Language",
+                     "theme":  "Theme",
+                     "create_demo":  "Create demo data"
+                 },
+    "actions":  {
+                    "cancel":  "Cancel",
+                    "save":  "Save",
+                    "close":  "Close",
+                    "share":  "Share",
+                    "subscribe":  "Subscribe",
+                    "unsubscribe":  "Unsubscribe",
+                    "delete":  "Delete",
+                    "view":  "View wishlist",
+                    "back_to_mine":  "Back to my list",
+                    "view_profile":  "View profile"
+                }
+}
